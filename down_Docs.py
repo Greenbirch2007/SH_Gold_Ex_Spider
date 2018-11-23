@@ -19,16 +19,15 @@ def call_pages_link(url):
         driver = webdriver.Chrome()
         driver.set_window_size(38, 12)  # 设置窗口大小
         driver.get(url)
-        html = driver.page_source
+        html = driver.page_source  # 对html的后续引用个，关闭浏览器不会影响
+        driver.close()
         return html
-        driver.quit()
+
     except Exception :
         pass
 
-# def call_pages_pdf(url):
-#
-#     response = requests.get(url)
-#     return response.text
+
+
 
   
 
@@ -46,7 +45,7 @@ if __name__ == '__main__':
     connection = pymysql.connect(host='127.0.0.1', port=3306, user='root', password='123456', db='SS_G_E',
                                  charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
     cursor = connection.cursor()
-    for num in range(1,100):
+    for num in range(1,4):
         sql ='select title,link from down_links where id = %s'% num
         # #执行sql语句
         cursor.execute(sql)
@@ -60,7 +59,7 @@ if __name__ == '__main__':
         for item in content:
             response = requests.get(item)
             if response.status_code == 200:
-                with open("/home/karson/SH_Gold_Ex_Spider/%s .pdf" % TI,"wb") as f:
+                with open("/home/karson/上海黄金交易所资料/制度与规则/清算/%s .pdf" % TI,"wb") as f:
                     f.write(response.content)
                     f.close()
 

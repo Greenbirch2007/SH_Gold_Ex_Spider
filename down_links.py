@@ -13,13 +13,13 @@ from lxml import etree
 
 
 
-def call_pages():
+def call_pages(url):
     driver = webdriver.Chrome()
-    url = 'http://www.sge.com.cn/guize?cflag=1&p=1'
     driver.set_window_size(38, 12)  # 设置窗口大小
     driver.get(url)
     # time.sleep(1)
     html = driver.page_source
+    driver.close()
     return html
 
 def parse_pages(html):
@@ -53,25 +53,15 @@ def insertDB(content):
     except Exception :
         print('出列啦')
 
-def download_pdf():
-
-    cursor.execute('select title,link from down_links')
 
 
-
-    # for i1,i2 in zip(title,link_list):
-    #
-    #     response = requests.get(i2)
-    #     if response.status_code == 200:
-    #         with open("/home/karson/SH_Gold_Ex_Spider/%s .pdf" % i1[:-4],"wb") as f:
-    #             f.write(response.content)
-    #             f.close()
-    #     else:
-    #         pass
 
 
 if __name__ == '__main__':
-    html = call_pages()
+    # for  offset in range(1,8):
+    # url = 'http://www.sge.com.cn/guize/gjzxywgz' + str(offset)
+    url = 'http://www.sge.com.cn/guize/jg'
+    html = call_pages(url)
     content = parse_pages(html)
     insertDB(content)
 
@@ -86,7 +76,10 @@ if __name__ == '__main__':
 #
 # drop table down_links;
 #
-
+#
+# drop table down_links;
+# select count(*) from down_links;
+#
 
 
 
