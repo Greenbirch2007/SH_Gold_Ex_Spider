@@ -22,7 +22,6 @@ def call_pages():
     html = driver.page_source
     return html
 
-# http://www.sge.com.cn/tzzjy/kjxqinfo/792259664960901120
 def parse_pages(html):
     big_list = []
     link_list = []
@@ -84,8 +83,9 @@ if __name__ == '__main__':
 # title varchar(100),
 # link varchar(150)
 # ) engine =InnoDB charset=utf8;
-
-
+#
+# drop table down_links;
+#
 
 
 
