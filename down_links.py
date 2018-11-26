@@ -58,12 +58,21 @@ def insertDB(content):
 
 
 if __name__ == '__main__':
-    # for  offset in range(1,8):
-    # url = 'http://www.sge.com.cn/guize/gjzxywgz' + str(offset)
-    url = 'http://www.sge.com.cn/guize/jg'
-    html = call_pages(url)
-    content = parse_pages(html)
-    insertDB(content)
+    links = ['http://www.sge.com.cn/guize?cflag=1&p=1', 'http://www.sge.com.cn/guize?cflag=1&p=2',
+             'http://www.sge.com.cn/guize/ywgz?cflag=1&p=1', 'http://www.sge.com.cn/guize/ywgz?cflag=1&p=2',
+             'http://www.sge.com.cn/guize/ywgz?cflag=1&p=3', 'http://www.sge.com.cn/guize/ywgz?cflag=1&p=4',
+             'http://www.sge.com.cn/guize/ywgz?cflag=1&p=5', 'http://www.sge.com.cn/guize/ywgz?cflag=1&p=6',
+             'http://www.sge.com.cn/guize/ywgz?cflag=1&p=7', 'http://www.sge.com.cn/guize/gjzxywgz',
+             'http://www.sge.com.cn/guize/jj', 'http://www.sge.com.cn/guize/xhjqhy',
+             'http://www.sge.com.cn/guize/xhyqhy', 'http://www.sge.com.cn/guize/rljysxj',
+             'http://www.sge.com.cn/guize/rlyhjxj', 'http://www.sge.com.cn/guize/rlgjsgl',
+             'http://www.sge.com.cn/guize/qs', 'http://www.sge.com.cn/guize/jg', 'http://www.sge.com.cn/guize/dj',
+             'http://www.sge.com.cn/guize/fxqbg']
+
+    for url in links:
+        html = call_pages(url)
+        content = parse_pages(html)
+        insertDB(content)
 
 
 
@@ -73,15 +82,13 @@ if __name__ == '__main__':
 # title varchar(100),
 # link varchar(150)
 # ) engine =InnoDB charset=utf8;
-#
+# #
 # drop table down_links;
 #
 #
 # drop table down_links;
 # select count(*) from down_links;
 #
-
-
 
 
 
